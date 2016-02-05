@@ -46,7 +46,7 @@
   // Obviously, you won't see anything appear in your console
   //  because we haven't invoked it yet!
 
-var breadbaker = function(argName){
+var breadMaker = function(argName){
   console.log('mmm, fresh baked ' + argName + ' bread.');
 };
 
@@ -67,7 +67,10 @@ ingredientsArray = ['quinoa','banana','zucchini', 'guacamole'];
 
 // Let's go through and refactor our code in a couple different ways.
 
+for(var i = 0; i < ingredientsArray.length; i++){
 
+  breadMaker(ingredientsArray[i]);
+}
 
 // 5. First, within each iteration,
   //  let's use funcInvoker instead of just using breadMaker directly.
@@ -77,6 +80,20 @@ ingredientsArray = ['quinoa','banana','zucchini', 'guacamole'];
   // Again, funcInvoker is not the most useful function in the world,
   //  but it should teach you how approachable and non-intimidating
   //  functional programming can be.
+
+ingredientsArray = ['quinoa','banana','zucchini', 'guacamole'];
+
+var breadMaker = function(argName){
+  console.log('mmm, fresh baked ' + argName + ' bread.');
+};
+
+var funcInvoker = function (funcToInvoke, argToInvokeWith){
+    funcToInvoke(argToInvokeWith);
+  };
+
+for(var i = 0; i < ingredientsArray.length; i++){
+  funcInvoker(breadMaker, ingredientsArray[i]);
+}
 
   // Let's go back to that for loop again.
   // Can we refactor this to be a bit more generalized?
@@ -89,12 +106,21 @@ ingredientsArray = ['quinoa','banana','zucchini', 'guacamole'];
   //  that takes in an array and a function,
   //  then invokes the function on each item in the array.
 
-  // Example:
-  var jsPoints = [2,7,3,5];
-  var telegraphPrepLearning = function(item) {
-    console.log('after going through Telegraph Prep, this user has',item + 1000000000,'JavaScript points!');
-  };
-  // invokeOnEach(jsPoints, telegraphPrepLearning);
+var invokeOnEach = function(arr,func){
+  for(var i = 0; i < arr.length; i++){
+    func(arr[i]);
+  }
+};
+
+var jsPoints = [2,7,3,5];
+var telegraphPrepLearning = function(item) {
+  console.log('after going through Telegraph Prep, this user has',item +  
+              1000000000,'JavaScript points!');
+};
+
+invokeOnEach(jsPoints,telegraphPrepLearning);
+
+// results of invokeOnEach example
   // 'after going through Telegraph Prep, this user has 1000000002 JavaScript points!'
   // 'after going through Telegraph Prep, this user has 1000000007 JavaScript points!'
   // 'after going through Telegraph Prep, this user has 1000000003 JavaScript points!'
@@ -107,17 +133,14 @@ ingredientsArray = ['quinoa','banana','zucchini', 'guacamole'];
   //  and they get back to you with the data).
   // I've created a function for you below that
   //  will invoke a callback function 5 seconds after the function is run.
-  var call5SecondsLater = function(callback) {
+  var call5SecondsLater = function(callbackFunction) {
     //feel free to google for setTimeout if you want to learn more about it!
-    setTimeout(callback, 5000);
+    setTimeout(callbackFunction, 5000);
   };
-
-  // Just to highlight the time differences,
-  //  we're console.logging something right now so you can see the 5 second delay.
-  console.log('hello from yourself immediately');
 
 // 7. Try creating various functions and
   //  passing them in as the argument for call5SecondsLater.
+
 
   // Since we're not returning anything from call5SecondsLater,
   //  these functions will need to have side effects we can observe.
@@ -125,6 +148,18 @@ ingredientsArray = ['quinoa','banana','zucchini', 'guacamole'];
   //  invoke call5SecondsLater
   //  (hint, we'll have to console.log it inside
   //    the function we pass into call5SecondsLater).
+
+  var hello = function(){
+    console.log('hello');
+  };
+
+  call5SecondsLater(hello);
+
+  var itsme = function(){
+    console.log('its me');
+  };
+
+  call5SecondsLater(itsme);
 
   // Remember that a function is just a block of code
   //  (or instructions) that we've created but not invoked yet.
@@ -134,19 +169,18 @@ ingredientsArray = ['quinoa','banana','zucchini', 'guacamole'];
   //  function() {console.log('this is from the anonymous function');}
   // You'll notice, of course, that we're not invoking the anonymous function.
   //  But just like a function that we've stored into a variable,
-
-//  we can pass this anonymous function in as an argument
-//   to a higher-order function.
-// Let's try this out!
+//  we can pass this anonymous function in as an argument to a higher-order 
+// function. Let's try this out!
 
 // 8. Create a series of anonymous functions and
   // pass those into call5SecondsLater.
   // Here's an example of what I'd do:
     call5SecondsLater(function() {
       console.log("don't mind me, just playing around with time travel");
-    })
+    })();
 
     var testArr = [1,2,3,4,5];
+
     call5SecondsLater(function() {
       testArr[0] += 10;
       console.log('testArr after adding 10 to testArr[0] on a 5 second delay:',testArr);
@@ -171,7 +205,7 @@ ingredientsArray = ['quinoa','banana','zucchini', 'guacamole'];
   //    passing in that variable to a higher-order function invocation, or
   //  - just declaring an anonymous function in-line
   //    as we invoke the higher-order function)
-  //  at least well enough to understad what's going on,
+  //  at least well enough to understand what's going on,
   //  since you will encounter both throughout your career as an engineer.
 
 // Remember back to that point that

@@ -8,7 +8,7 @@
 
 	Take, doMathSoIDontHaveTo examples from the slides:
 
-```
+	```
 		var increment = function(n){
   			return n + 1;
 		};
@@ -26,7 +26,7 @@
 
 		var five = doMath(4, increment);
 
-```
+	```
 
 	First, instead of having to parse through parse through mathematical algorithms, we've translated our action to two functions: increment, and square. 
 
@@ -39,18 +39,18 @@
 
 		A higher order function is a function that takes a function as input and/or returns a function as output:
 
-```
+				```
 					// higher order function
 					var doMath = function(n, func){ // takes a callback as a parameter
 						// returns the callback evaluated callback to the user
   						return func(n);
 					};
 
-```
+				```
 
 		"Callback" is a term used for any function that is passed as an argument to a function they can be named or anonymous arguments for callbacks can be passed as arguments to the higher order function:
 
-``` 
+			``` 
 				//callback, when passed into the doMath function
 				var increment = function(n){
   					return n + 1;
@@ -73,7 +73,7 @@
 
 
 
-```
+			```
 
 ## What you should be comfortable with:
 

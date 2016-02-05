@@ -11,23 +11,34 @@
 // 1. Create a very basic function called funcInvoker.
   // This isn't a complex function, it just has one simple task.
   // It's going to have two parameters: funcToInvoke, and argToInvokeWith.
+  
   // As you may have already guessed, funcToInvoke is a function (any function!)
-  //  that the user passes in to us.
+  //  that the user passes in to use.
+
   // And argToInvokeWith is an argument (any argument!)
   //  that the user gives us to invoke that function with.
+
   // All our basic little function has to do is invoke funcToInvoke
   //  with argToInvokeWith.
+
     // Example invocation:
     var addToTen = function(num1) {
       console.log('just invoked addToTen with',num1,'and 10, resulting in', 10 + num1);
     };
     // UNCOMMENT and test your code: funcInvoker(addToTen, 5); 
 
-    
   // This might not seem like much, and in fact, that's the point!
   // This is functional programming: you passed a function
   //  into another function as an argument.
   // That's all it takes.
+
+  var funcInvoker = function (funcToInvoke, argToInvokeWith){
+      funcToInvoke(argToInvokeWith);
+  };
+
+// funcInvoker(addToTen, 10);
+
+
 
 // 2. Let's create a function called breadMaker.
   // This function takes in a single argument, and
@@ -35,11 +46,17 @@
   // Obviously, you won't see anything appear in your console
   //  because we haven't invoked it yet!
 
+var breadbaker = function(argName){
+  console.log('mmm, fresh baked ' + argName + ' bread.');
+};
+
 // 3. Now let's create an ingredientsArray
   //  with four different ingredients in it.
   // Mine would be var ingredientsArray =
   //  ['quinoa','banana','zucchini', 'guacamole'];.
   // Clearly I'm not much of a breadbaker!
+
+ingredientsArray = ['quinoa','banana','zucchini', 'guacamole'];
 
 // 4. Using a for loop,
   //  invoke breadMaker on each item in the array.
@@ -49,6 +66,8 @@
   // That's great! Because this leads us into functional programming.
 
 // Let's go through and refactor our code in a couple different ways.
+
+
 
 // 5. First, within each iteration,
   //  let's use funcInvoker instead of just using breadMaker directly.
